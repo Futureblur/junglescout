@@ -1,124 +1,97 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { Header } from "@/components/Header";
+import { Button } from "@/components/Button";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
-const inter = Inter({ subsets: ['latin'] })
+import { Lusitana } from "@next/font/google";
+
+const lusitana = Lusitana({
+	subsets: ["latin"],
+	weight: ["400", "700"],
+})
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	return (
+		<main>
+			<Header/>
+			<div className={"space-y-40 mb-20"}>
+				<Hero/>
+				<WhyJunglescout/>
+				<CTA/>
+			</div>
+		</main>
+	)
+}
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+const Hero = () => {
+	return (
+		<div className={"flex md:flex-row flex-col justify-between xl:px-40 lg:px-32 px-10 lg:mt-40 mt-24"}>
+			<div className={"xl:max-w-xl md:pr-10 pr-0 max-w-sm space-y-10"}>
+				<h1 className={lusitana.className + " text-primary xl:text-6xl lg:text-5xl text-3xl xl:leading-tight"}>Happy community, Happy life.</h1>
+				<h2 className={"text-white opacity-70 mt-10"}>We know how it feels like to be stuck in a toxic community. Luckily for you, it doesn’t always have to be this way. Explore how you can automate moderator recruitment for your server, manage their experiences and much more!</h2>
+				<div className={"flex space-x-6 cursor-pointer"}>
+					<Button name={"Sign up for Beta"} url={"/signup"}/>
+					<div className={"flex items-center space-x-2"}>
+						<div className={"text-white"}>7 Reasons Why</div>
+						<ArrowRightIcon className={"h-5 w-5 text-primary"}/>
+					</div>
+				</div>
+			</div>
+			<div className={"xl:h-[500px] xl:w-[470px] md:h-[450px] md:w-[400px] h-[300px] w-full mt-6 relative"}>
+				<Image className={"object-cover pointer-events-none rounded-2xl md:rotate-3"} src={"/jungle.jpg"} fill={true} alt={"Jungle scenery"}/>
+			</div>
+		</div>
+	)
+}
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+const WhyJunglescout = () => {
+	return (
+		<div className={"space-y-40"}>
+			<h2 className={lusitana.className + " text-primary text-4xl text-center"}>Why Junglescout?</h2>
+			<ReasonCard title={"1"} description={"Everything you need, gathered in one place. No more recruitment applications using boring, third party forms!"} image={"/jungle.jpg"}/>
+			<ReasonCard title={"2"} description={"Experience is key when it comes to recruiting fellow staff members. Luckily, you can easily view and track the amount of experience all applicants have - in one glance."} image={"/jungle.jpg"}/>
+			<ReasonCard title={"3"} description={"Grow together, grow bigger. The longer you are a member, the higher you will rank amongst others. This ensures that you are trustworthy."} image={"/jungle.jpg"}/>
+			<ReasonCard title={"4"} description={"Not looking for a moderator right now? That’s completely fine - you can hire a helper or community manager instead! But don’t feel restricted by these, as you can create a custom role that suits your needs!"} image={"/jungle.jpg"}/>
+			<ReasonCard title={"5"} description={"Fun fact: the entire project (even the website you’re currently viewing) is open source, meaning that anyone can become a part of this awesome journey by contributing! Thanks to my generous supporters, I can keep this service running for free - for everyone."} image={"/jungle.jpg"}/>
+			<ReasonCard title={"6"} description={"Set custom filters so you can find the exact place where you feel comfortable. Whether it’s gaming, anime, cooking or studying - we’ve got you covered."} image={"/jungle.jpg"}/>
+			<ReasonCard title={"7"} description={"To make sure you have someone 24/7 by your side, you can set your preferred timezone - and I’ll go out and search the entire jungle to find the right one."} image={"/jungle.jpg"}/>
+		</div>
+	)
+}
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+const ReasonCard = (props: {title: string, description: string, image: string}) => {
+	return (
+		<div className={"flex md:flex-row flex-col justify-around px-10 md:space-y-2 space-y-6"}>
+			<div className={"md:h-[400px] md:w-[400px] h-[200px] w-full relative"}>
+				<Image className={"object-cover pointer-events-none rounded-2xl"} src={props.image} fill={true} alt={"Jungle scenery"}/>
+			</div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+			<div className={"max-w-sm space-y-8 md:px-10"}>
+				<div className={"text-primary text-3xl font-bold"}>{props.title}</div>
+				<div className={"text-white opacity-70"}>{props.description}</div>
+			</div>
+		</div>
+	)
+}
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+const CTA = () => {
+	return (
+		<div>
+			<h2 className={lusitana.className + " text-primary text-4xl text-center"}>Which one suits you the best?</h2>
+			<div className={"flex md:flex-row flex-col mt-10 justify-center md:space-x-10 px-10 md:space-y-0 space-y-4"}>
+				<CTACard title={"🔍"} cta={"Start exploring"} description={"I am looking for a moderator, helper, community manager or someone who can take our community to the next level."} url={"/explore"}/>
+				<CTACard title={"🤝"} cta={"Join community"} description={"I am willing to help growing and engaging with communities by becoming a moderator or community manager."} url={"/join"}/>
+			</div>
+		</div>
+	)
+}
+
+const CTACard = (props: {title: string, description: string, cta: string, url: string}) => {
+	return (
+		<div className={"md:max-w-sm w-full space-y-10 text-center bg-background-lighter rounded-xl border-white border-opacity-10 border-2 p-6 py-10"}>
+			<p className={"text-7xl"}>{props.title}</p>
+			<p className={"text-white opacity-70"}>{props.description}</p>
+			<Button name={props.cta} url={props.url}/>
+		</div>
+	)
 }
